@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\ToDoList;
 use function foo\func;
 
 class CategoryController extends Controller
@@ -21,8 +22,9 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact(['categories', 'tasks']));
     }
 
 
@@ -33,8 +35,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-
-        return view('categories.create');
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
+        return view('categories.create', compact('tasks'));
     }
 
     /**

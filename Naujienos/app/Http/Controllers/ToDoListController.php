@@ -17,7 +17,7 @@ class ToDoListController extends Controller
      */
     public function index()
     {
-        $tasks = ToDoList::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
         $users = User::all();
 
         return view('tasks.index', compact(['tasks', 'users']));
@@ -73,9 +73,11 @@ class ToDoListController extends Controller
      */
     public function edit($id)
     {
+
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
         $task = ToDoList::findOrFail($id);
         $users = User::all();
-        return view('tasks.edit', compact(['task', 'users']));
+        return view('tasks.edit', compact(['task', 'users', 'tasks']));
     }
 
     /**

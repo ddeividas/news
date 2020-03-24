@@ -18,7 +18,7 @@
                 <p><i class="far fa-comment"></i></p>
                 <div class="col-5 kortele">
                     <a style="text-decoration: none" href="{{route('news.show', $new->id)}}">
-                        <div class="img"><img style="width: 100%; height: 100%" src="https://img.freepik.com/free-vector/blue-breaking-news-tv-background_1017-14201.jpg?size=626&ext=jpg" alt=""></div>
+                        <div class="img"><img style="width: 100%; height: 100%" src="/uploads/photos/{{$new->image}}" alt=""></div>
                         <div class="card-body">
                             <p style="color: black" class="card-text"><b>{{$new->title}} <span style="color: red"> ({{$new->comments->count()}})</span></b></p>
                             <p style="margin-bottom: 0px">{{$new->category->name}}</p>
@@ -35,11 +35,11 @@
         <div class="col-3 right_info">
             <h4>Top 3 Skaitomiausi</h4>
             <div style="padding: 10px">
-                @for($i = 0; $i < 3; $i++)
+                @foreach($views as $view)
                     <a href="">
-                        <p>{{$views[$i]['title']}} ({{$views[$i]['views']}})</p>
+                        <p>{{$view['title']}} ({{$view['views']}})</p>
                     </a>
-                @endfor
+                @endforeach
             </div>
             <h4>Top autoriai</h4>
             <div class="authors">

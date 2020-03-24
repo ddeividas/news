@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\ToDoList;
 
 class UserController extends Controller
 {
@@ -20,14 +21,16 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index', compact(['users', 'tasks']));
     }
 
     public function profile($id){
         $user = User::findOrFail($id);
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
-        return view('users.profile', compact('user'));
+        return view('users.profile', compact(['user', 'tasks']));
     }
 
     /**
@@ -61,7 +64,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('users.show', compact('user'));
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
+
+        return view('users.show', compact(['user', 'tasks']));
     }
 
     /**

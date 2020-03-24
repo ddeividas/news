@@ -22,7 +22,7 @@
             <div class="author_news">
                 <a href="{{route('news.show', $item->id)}}}">
                     <div class="author_news_photo">
-                        <img style="width: 100%" src="https://img.freepik.com/free-vector/blue-breaking-news-tv-background_1017-14201.jpg?size=626" alt="">
+                        <img style="width: 100%" src="/uploads/photos/{{$item->image}}" alt="">
                     </div>
                     <div class="author_news_info">
                         <h3>{{$item->title}}</h3>

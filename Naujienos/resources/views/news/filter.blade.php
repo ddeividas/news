@@ -16,7 +16,7 @@
         @foreach($news as $new)
             <div class="col-3 kortele">
                 <a style="text-decoration: none" href="{{route('news.show', $new->id)}}">
-                    <div class="img"><img style="width: 100%; height: 100%" src="https://img.freepik.com/free-vector/blue-breaking-news-tv-background_1017-14201.jpg?size=626&ext=jpg" alt=""></div>
+                    <div class="img"><img style="width: 100%; height: 100%" src="/uploads/photos/{{$new->image}}" alt=""></div>
                     <div class="card-body">
                         <p style="color: black" class="card-text"><b>{{$new->title}} <span style="color: red"> ({{$new->comments->count()}})</span></b></p>
                         <p style="margin-bottom: 0px">{{$new->category->name}}</p>

@@ -26,6 +26,7 @@ class StoreNews extends FormRequest
         return [
             'required' => 'Užpildykite laukus',
             'title.min' => 'Minimalus simboliu skaicius: 10',
+            'photo.mimes' => 'Netinkamas nuotraukos formatas',
         ];
     }
 
@@ -40,6 +41,7 @@ class StoreNews extends FormRequest
             'title' => ['required', 'min:10'],
             'text' => 'required',
             'category_id' => 'required',
+            'photo' => ['required', 'mimes:jpeg,bmp,png'],
         ];
     }
 }

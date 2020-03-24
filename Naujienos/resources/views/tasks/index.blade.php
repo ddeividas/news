@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <h4 style="margin-top: 40px">Redaguoti užduotį</h4>
+                <h4 style="margin-top: 40px">Visos užduotys</h4>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -129,6 +129,7 @@
                 </table>
             </div>
         </div>
-
     </div>
+
+
 @endsection

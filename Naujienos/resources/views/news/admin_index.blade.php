@@ -36,7 +36,7 @@
                                 @endif
                             </div>
                         </th>
-                        <th>{{$item->created_at->format('d M')}}</th>
+                        <th>{{$item->created_at->format('Y/m/d')}}</th>
                     </tr>
                 @endforeach
             </tbody>

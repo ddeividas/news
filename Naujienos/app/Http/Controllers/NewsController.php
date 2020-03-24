@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\News;
 use App\Category;
 use App\User;
+use App\ToDoList;
 use App\Http\Requests\StoreNews;
+use App\Http\Requests\EditNews;
 use Session;
 
 class NewsController extends Controller
@@ -18,11 +20,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-
-
         $news = News::paginate(6);
 
-        $views = News::orderBy('views', 'desc')->get();
+        $views = News::orderBy('views', 'desc')->paginate(3);
 
         $categories = Category::all();
 
@@ -38,9 +38,10 @@ class NewsController extends Controller
 
     public function admin_index(){
         $news = News::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
         $news = News::orderBy('created_at', 'desc')->get();
 
-        return view('news.admin_index', compact('news'));
+        return view('news.admin_index', compact(['news', 'tasks']));
     }
 
     public function admin_filter($id){
@@ -67,8 +68,9 @@ class NewsController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
-        return view('news.create', compact('categories'));
+        return view('news.create', compact(['categories', 'tasks']));
     }
 
     /**
@@ -87,6 +89,13 @@ class NewsController extends Controller
         $news->category_id = $request->input('category_id');
         $news->user_id = $request->input('user_id');
 
+//        --------failo ikelimas
+        $image = $request->file('photo');
+        $imageExtension = $image->getClientOriginalName();
+        $imageName = date('Y_m_d_H') . "." . $imageExtension;
+        $image->move('uploads/photos/', $imageName);
+        $news->image = $imageName;
+
         $news->save();
 
         return redirect()->route('news.index');
@@ -101,6 +110,7 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
         $viewCounter = Session::get('viewed_pages', []);
         if(!in_array($news->id, $viewCounter)){
@@ -108,7 +118,7 @@ class NewsController extends Controller
             Session::push('viewed_pages', $news->id);
         }/*End of hit counter*/
 
-        return view ('news.show', compact('news'));
+        return view ('news.show', compact(['news', 'tasks']));
     }
 
     /**
@@ -121,8 +131,9 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         $categories = Category::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
-        return view('news.edit', compact(['news', 'categories']));
+        return view('news.edit', compact(['news', 'categories', 'tasks']));
     }
 
     /**
@@ -132,7 +143,7 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditNews $request, $id)
     {
         $news = News::findOrFail($id);
 
@@ -140,6 +151,14 @@ class NewsController extends Controller
         $news->title = $request->input('title');
         $news->article = $request->input('text');
         $news->category_id = $request->input('category_id');
+
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $imageExtension = $image->getClientOriginalName();
+            $imageName = date('Y_m_d_H') . "." . $imageExtension;
+            $image->move('uploads/photos/', $imageName);
+            $news->image = $imageName;
+        }
 
         $news->update();
 

@@ -6,7 +6,7 @@
             <article>
                 <div class="row">
                     <div class="col-8">
-                        <div style="width: 100%; height: 300px"><img style="width: 100%; height: 100%" src="https://img.freepik.com/free-vector/blue-breaking-news-tv-background_1017-14201.jpg?size=626&ext=jpg" alt=""></div>
+                        <div style="width: 100%; height: 300px"><img style="width: 100%; height: 100%" src="/uploads/photos/{{$news->image}}" alt=""></div>
                         <h3 style="max-width: 80%; margin-top: 15px">{{$news->title}}</h3>
                     </div>
                     <div class="col-4">

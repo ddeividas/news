@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
+use App\ToDoList;
 
 class CommentController extends Controller
 {
@@ -15,9 +16,9 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::all();
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
 
-
-        return view('comments.index', compact('comments'));
+        return view('comments.index', compact(['comments', 'tasks']));
     }
 
     /**

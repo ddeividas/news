@@ -12,13 +12,13 @@
 {{--                    </ul>--}}
 {{--                </div>--}}
 {{--            @endif--}}
-            <form method="POST" action="{{route('news.store')}}">
+            <form method="POST" action="{{route('news.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Antraštė</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}">
                     @error('title')
-                    <div style="color: red; margin-top: 5px">{{ $message }}</div>
+                        <div style="color: red; margin-top: 5px">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
@@ -39,6 +39,15 @@
                     @endforeach
                 </select>
                 @error('category_id')
+                    <div style="color: red; margin-top: 5px">{{ $message }}</div>
+                @enderror
+                <div style="margin-top: 16px" class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input @error('photo') is-invalid @enderror" id="photo" name="photo">
+                        <label class="custom-file-label" for="photo">Pasirinkite faila</label>
+                    </div>
+                </div>
+                @error('photo')
                     <div style="color: red; margin-top: 5px">{{ $message }}</div>
                 @enderror
                 <div>
