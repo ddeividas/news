@@ -9,6 +9,6 @@ class Comment extends Model
     protected $table = "comments";
 
     public function news(){
-        return $this->hasOne('App\News', 'id', 'news_id');
+        return $this->belongsTo('App\News');
     }
 }
