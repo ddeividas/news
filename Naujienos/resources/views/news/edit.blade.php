@@ -6,6 +6,7 @@
         <div class="col-8">
             <form method="POST" action="{{route('news.update', $news->id)}}" enctype="multipart/form-data">
                 @csrf
+                @method('PATCH')
                 <div class="form-group">
                     <label for="title">Antraštė</label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="article" name="title" value="{{old('title', $news->title)}}">

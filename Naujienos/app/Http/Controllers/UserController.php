@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\ToDoList;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth')->except('show');
-
     }
     /**
      * Display a listing of the resource.
@@ -113,6 +113,9 @@ class UserController extends Controller
         $users = User::findOrFail($id);
 
         $users->delete();
+
+        Session::flash('status', 'Vartotojas ištrintas');
+        Session::flash('status_class', 'alert-danger');
 
         return redirect()->back();
     }

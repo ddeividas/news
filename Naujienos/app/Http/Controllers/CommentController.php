@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\ToDoList;
+use Illuminate\Support\Facades\Session;
 
 class CommentController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth')->only('index', 'destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
+        $comments = Comment::orderBy('created_at', 'desc')->get();
         $tasks = ToDoList::orderBy('term', 'asc')->get();
 
         return view('comments.index', compact(['comments', 'tasks']));
@@ -101,6 +106,9 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
 
         $comment->delete();
+
+        Session::flash('status', 'Komentaras ištrintas');
+        Session::flash('status_class', 'alert-success');
 
         return redirect()->route('comments.index');
     }

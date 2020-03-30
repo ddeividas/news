@@ -9,13 +9,16 @@
                 <p style="color: red">{{$message}}</p>
             @endif
 
-            <form method="POST" action="{{route('categories.store')}}">
+            <form method="POST" action="{{route('category.store')}}">
                 @csrf
                 <div class="form-group">
                     <label for="category">Pavadinimas</label>
-                    <input type="text" class="form-control" id="category" name="name">
-                <div>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="category" name="name">
+                    @error('name')
+                        <div style="margin-top: 10px" class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <input style="margin-top: 15px" type="submit" class="btn btn-success">
+
                 </div>
             </form>
         </div>

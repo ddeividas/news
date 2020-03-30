@@ -36,8 +36,8 @@
             <h4>Top 3 Skaitomiausi</h4>
             <div style="padding: 10px">
                 @foreach($views as $view)
-                    <a href="">
-                        <p>{{$view['title']}} ({{$view['views']}})</p>
+                    <a href="{{route ('news.show', $view->id)}}">
+                        <p>{{$view->title}} ({{$view->views}})</p>
                     </a>
                 @endforeach
             </div>
@@ -56,8 +56,5 @@
                 @endforeach
             </div>
         </div>
-        @section('asd')
-            <p>sdaf</p>
-            @endsection
     </div>
 @endsection

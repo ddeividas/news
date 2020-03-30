@@ -26,7 +26,13 @@
                                 @endif
                         </th>
                         <th>{{$comment->created_at}}</th>
-                        <th><a href="{{route('comments.destroy', $comment->id)}}" class="btn btn-danger">Trinti</a></th>
+                        <th>
+                            <form method="POST" action="{{route('comments.destroy', $comment->id)}}">
+                                @csrf
+                                @method('delete')
+                                <input class="btn btn-danger" type="submit" value="Trinti">
+                            </form>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>

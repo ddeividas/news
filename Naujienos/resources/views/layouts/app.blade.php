@@ -78,7 +78,7 @@
 
         <main class="container">
             @auth
-                @if(\Route::current()->getName() == 'news.index' || \Route::current()->getName() == 'news.filter')
+                @if(\Route::current()->getName() == 'news.index' || \Route::current()->getName() == 'news.filter' || \Route::current()->getName() == 'news.show')
                     @yield('content')
                 @else
             <div class="row">
@@ -88,7 +88,7 @@
                             <a style="margin-top: 15px" class="btn btn-primary" href="{{route('news.create')}}">Sukurti naujiena</a>
                         </div>
                         <div>
-                            <a style="margin-top: 15px" class="btn btn-primary" href="{{route('categories.create')}}">Sukurti kategorija</a>
+                            <a style="margin-top: 15px" class="btn btn-primary" href="{{route('category.create')}}">Sukurti kategorija</a>
                         </div>
                         @section('tasks')
                             <h5 style="margin-top: 25px; border-bottom: 2px solid lightseagreen;">Užduotys</h5>
@@ -106,12 +106,17 @@
                 <div style="padding-left: 0px" class="col-10">
                     <div style="border-bottom: 1px solid gray" class="top_navbar">
                         <a style="margin:15px;"class="btn btn-secondary" href="{{route('home')}}">Straipsniai</a>
-                        <a style="margin:15px;"class="btn btn-secondary" href="{{route('categories.index')}}">Kategorijos</a>
+                        <a style="margin:15px;"class="btn btn-secondary" href="{{route('category.index')}}">Kategorijos</a>
                         <a style="margin:15px;"class="btn btn-secondary" href="{{route('comments.index')}}">Visi komentarai</a>
                         <a style="margin:15px;"class="btn btn-secondary" href="{{route('users.index')}}">Vartotojai</a>
                         <a style="margin:15px;"class="btn btn-success" href="{{route('user.profile', Auth::user()->id)}}">Mano profilis</a>
                         <a style="margin:15px;"class="btn btn-warning" href="{{route('tasks.index')}}">Užduotys</a>
                     </div>
+                    @if(Session::get('status_class'))
+                        <div style="width: 80%; margin: 20px auto; text-align: center" class="alert {{Session::get('status_class')}}">
+                            {{Session::get('status')}}
+                        </div>
+                    @endif
                     <div>
                         @yield('content')
                     </div>

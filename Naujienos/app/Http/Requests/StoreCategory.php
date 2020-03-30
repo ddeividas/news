@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNews extends FormRequest
+class StoreCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class StoreNews extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Užpildykite laukus',
-            'title.min' => 'Minimalus simboliu skaicius: 10',
-            'photo.mimes' => 'Netinkamas nuotraukos formatas',
+            'required' => 'Užpildykite lauką',
         ];
     }
 
@@ -38,9 +36,7 @@ class StoreNews extends FormRequest
     public function rules()
     {
         return [
-        'title' => ['required', 'min:10'],
-        'text' => 'required',
-        'image' => ['required', 'mimes:jpeg,bmp,png'],
-    ];
+            'name' => 'required'
+        ];
     }
 }

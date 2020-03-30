@@ -24,7 +24,11 @@
                     </th>
                     <th>{{$category->news->count()}}</th>
                     <th>
-                        <a class="btn btn-danger" href="{{route('category.destroy', $category->id)}}">Trinti</a>
+                        <form method="POST" action="{{route('category.destroy', $category->id)}}">
+                            @csrf
+                            @method('delete')
+                            <input class="btn btn-danger" type="submit" value="Trinti">
+                        </form>
                     </th>
                 </tr>
             @endforeach

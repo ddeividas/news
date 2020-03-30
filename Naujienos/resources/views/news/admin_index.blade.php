@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('status'))
-        {{ session('status') }}
-    @endif
     <div class="content">
         <h4>Straipsniai</h4>
         <table class="table">
@@ -30,7 +27,11 @@
                         <th style="text-align: center">{{$item->views}}</th>
                         <th>
                             <div style="display: flex" class="justify-content-center">
-                                <a style="display:block;" class="btn btn-danger" href="{{route('news.delete', $item->id)}}">Trinti</a>
+                                <form method="POST" action="{{route('news.destroy', $item->id)}}">
+                                    @csrf
+                                    @method('delete')
+                                    <input class="btn btn-danger" type="submit" value="Trinti">
+                                </form>
                                 @if(Auth::user()->name == $item->author)
                                     <a style="display:block; margin-left: 5px" class="btn btn-primary" href="{{route('news.edit', $item->id)}}">Redaguoti</a>
                                 @endif

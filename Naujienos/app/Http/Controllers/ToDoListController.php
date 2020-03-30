@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Session;
 
 class ToDoListController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +54,8 @@ class ToDoListController extends Controller
 
         $tasks->save();
 
-        Session::flash('status', 'Sekmingai sukurta naujiena!');
+        Session::flash('status', 'Sėkmingai sukurta užduotis');
+        Session::flash('status_class', 'alert-success');
 
         return redirect()->back();
     }
@@ -97,6 +103,9 @@ class ToDoListController extends Controller
 
         $tasks->save();
 
+        Session::flash('status', 'Sėkmingai atnaujinta užduotis');
+        Session::flash('status_class', 'alert-success');
+
         return redirect()->route('tasks.index');
     }
 
@@ -120,6 +129,9 @@ class ToDoListController extends Controller
         $tasks = ToDoList::findOrFail($id);
 
         $tasks->delete();
+
+        Session::flash('status', 'Sėkmingai ištrinta');
+        Session::flash('status_class', 'alert-danger');
 
         return redirect()->back();
     }

@@ -9,10 +9,13 @@ use App\User;
 use App\ToDoList;
 use App\Http\Requests\StoreNews;
 use App\Http\Requests\EditNews;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class NewsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['index', 'filter', 'show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,9 +30,7 @@ class NewsController extends Controller
         $categories = Category::all();
 
         $users = User::all();
-
-        $users = User::with('news')->get()->sortBy(function($item)
-        {
+        $users = User::with('news')->get()->sortBy(function($item){
             return $item->news->count() * -1;
         });
 
@@ -45,10 +46,11 @@ class NewsController extends Controller
     }
 
     public function admin_filter($id){
+        $tasks = ToDoList::orderBy('term', 'asc')->get();
         $news = News::all();
         $news = News::orderBy($id, 'asc')->get();
 
-        return view('news.admin_index', compact('news'));
+        return view('news.admin_index', compact(['news', 'tasks']));
     }
 
     public function filter($id){
@@ -97,6 +99,10 @@ class NewsController extends Controller
         $news->image = $imageName;
 
         $news->save();
+
+        Session::flash('status', 'Straipsnis sukurtas');
+        Session::flash('status_class', 'alert-success');
+
 
         return redirect()->route('news.index');
     }
@@ -162,6 +168,9 @@ class NewsController extends Controller
 
         $news->update();
 
+        Session::flash('status', 'Straipsnis sėkmingai redaguotas');
+        Session::flash('status_class', 'alert-success');
+
         return redirect()->route('home');
     }
 
@@ -177,6 +186,9 @@ class NewsController extends Controller
 
         $news->delete();
 
-        return redirect()->route('home');
+        Session::flash('status', 'Straipsnis ištrintas');
+        Session::flash('status_class', 'alert-danger');
+
+        return redirect()->back();
     }
 }

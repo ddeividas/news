@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\ToDoList;
+use App\Http\Requests\StoreCategory;
+use Illuminate\Support\Facades\Session;
 use function foo\func;
 
 class CategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->only(['create', 'index']);
-
+    public function __construct(){
+        $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,17 +46,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
         $categories = new Category();
 
-        if($request->input('name')){
-            $categories->name = $request->input('name');
-            $categories->save();
-            return redirect()->back()->with('categories_create_message', 'Kategorija sekmingai sukurta');
-        } else{
-            return redirect()->back()->with('categories_create_message_cancel', 'Iveskite kategorijos pavadinima');
-        }
+        $categories->name = $request->input('name');
+        $categories->save();
+
+        Session::flash('status', 'Kategorija sukurta');
+        Session::flash('status_class', 'alert-success');
+
+        return redirect()->route('category.index');
 
     }
 
@@ -105,6 +106,9 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->back()->with('delete_message', 'Kategorija sėkmingai ištrinta');
+        Session::flash('status', 'Kategorija ištrinta');
+        Session::flash('status_class', 'alert-danger');
+
+        return redirect()->back();
     }
 }
