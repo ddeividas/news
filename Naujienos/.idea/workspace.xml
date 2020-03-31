@@ -3,20 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f0dc50e7-f3fb-4ec2-a712-4638bd57d7c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToDoListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToDoListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/StoreNews.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/StoreNews.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/filter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/filter.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/news/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/news/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tasks/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tasks/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/profile.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +137,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/calculator" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
@@ -188,6 +176,8 @@
       <workItem from="1584089246394" duration="784000" />
       <workItem from="1584279678327" duration="83000" />
       <workItem from="1584825355884" duration="18000" />
+      <workItem from="1585576550353" duration="1550000" />
+      <workItem from="1585587749200" duration="18000" />
     </task>
     <servers />
   </component>
@@ -195,10 +185,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="154" key="FileChooserDialogImpl" timestamp="1583924633139">
+    <state x="548" y="154" key="FileChooserDialogImpl" timestamp="1585587765137">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583924633139" />
+    <state x="548" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585587765137" />
     <state width="503" height="446" key="SwitcherDM" timestamp="1583492398964">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

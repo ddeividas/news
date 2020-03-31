@@ -90,17 +90,15 @@
                         <div>
                             <a style="margin-top: 15px" class="btn btn-primary" href="{{route('category.create')}}">Sukurti kategorija</a>
                         </div>
-                        @section('tasks')
-                            <h5 style="margin-top: 25px; border-bottom: 2px solid lightseagreen;">Užduotys</h5>
-                                @foreach($tasks as $item)
-                                    @if(Auth::user()->id == $item->user_id)
-                                            <a style="text-decoration: none;" href="{{route('tasks.index')}}">
-                                                <p style="margin-bottom: 0px">{{$item->task}}</p>
-                                                <p style="margin-top: 0px; margin-bottom: 15px; border-bottom: 1px solid dodgerblue">{{$item->term}}</p>
-                                            </a>
-                                    @endif
-                                @endforeach
-                            @show
+                        <h5 style="margin-top: 25px; border-bottom: 2px solid lightseagreen;">Užduotys</h5>
+                        @foreach($tasks as $item)
+                            @if(Auth::user()->id == $item->user_id)
+                                <a style="text-decoration: none;" href="{{route('tasks.index')}}">
+                                    <p style="margin-bottom: 0px">{{$item->task}}</p>
+                                    <p style="margin-top: 0px; margin-bottom: 15px; border-bottom: 1px solid dodgerblue">{{$item->term}}</p>
+                                </a>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div style="padding-left: 0px" class="col-10">
